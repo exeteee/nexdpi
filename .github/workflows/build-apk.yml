@@ -22,11 +22,11 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      # v4 no longer requests the removed legacy SDK package "tools".
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses >/dev/null || true
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       - name: Install Android SDK, NDK and CMake
         run: |
